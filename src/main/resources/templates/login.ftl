@@ -1,12 +1,22 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-    Login page
+    <h2>Авторизация</h2>
     <form action="/login" method="post">
-        <div><label> User Name : <input type="text" name="username"/> </label></div>
-        <div><label> Password: <input type="password" name="password"/> </label></div>
+        <div class="form-group">
+            <label class="col-sm-2 col-form-label"> Логин :</label>
+            <div class="col-sm-6">
+                <input type="text" name="username" class="form-control" placeholder="Введите логин"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 col-form-label"> Пароль :</label>
+            <div class="col-sm-6">
+                <input type="password" name="password" class="form-control" placeholder="Введите пароль"/>
+            </div>
+        </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <div><input type="submit" value="Sign In"/></div>
+        <button type="submit" class="btn btn-primary">Войти</button>
     </form>
-    <a href="/registration">Add new user</a>
+    <a href="/registration">Регистрация</a>
 </@c.page>
