@@ -7,12 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import project.domain.Role;
 import project.domain.User;
-import project.repos.UserRepo;
 import project.service.UserService;
-
-import java.util.Collections;
 
 @Controller
 @RequestMapping("/registration")
