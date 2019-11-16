@@ -1,7 +1,6 @@
 package project.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,23 +9,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import project.domain.Advert;
 import project.domain.User;
-import project.repos.AdvertRepo;
+import project.service.AdvertService;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/create")
 public class CreateController {
 
     @Autowired
-    private AdvertRepo advertRepo;
-
-    @Value("${upload.path}")
-    private String uploadPath;
+    AdvertService advertService;
 
     @GetMapping
     public String createPage() {
@@ -45,24 +38,7 @@ public class CreateController {
             @RequestParam String description,
             Model model) throws IOException {
 
-        Advert advert = new Advert(author, tittle, cost, type, company, city, description);
-
-        if(picture != null && !picture.getOriginalFilename().isEmpty()){
-            File uploadDir = new File(uploadPath);
-
-            if(!uploadDir.exists()){
-                uploadDir.mkdir();
-            }
-
-            String uuidFile = UUID.randomUUID().toString();
-            String resultFileName = uuidFile + "." + picture.getOriginalFilename();
-
-            picture.transferTo(new File(uploadPath + "/" + resultFileName));
-
-            advert.setPicture(resultFileName);
-        }
-
-        advertRepo.save(advert);
+        advertService.addAdvert(author, picture, tittle, cost, type, company, city, description);
 
         return "redirect:/main";
     }

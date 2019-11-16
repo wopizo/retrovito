@@ -1,6 +1,6 @@
 <#include "security.ftl">
 
-<nav class="navbar navbar-expand-md navbar-light bg-light">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
     <a class="navbar-brand" href="/">Retrovito</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -31,7 +31,7 @@
                 </li>
                 <li class="nav-item ">
                     <form action="/logout" method="post">
-                        <button type="submit" class="btn btn-primary ml-4">Выйти</button>
+                        <button type="submit" class="btn btn-light ml-4">Выйти</button>
                         <input type="hidden" name="_csrf" value="${_csrf.token}">
                     </form>
                 </li>

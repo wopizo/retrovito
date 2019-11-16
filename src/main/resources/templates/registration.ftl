@@ -1,5 +1,6 @@
 <#import "parts/common.ftl" as c>
 <@c.page>
+    <div class="w-50 mx-auto my-5">
     <h2>Регистрация</h2>
     ${message?ifExists}
     <form action="/registration" method="post">
@@ -54,4 +55,5 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <button type="submit" class="btn btn-primary">Отправить</button>
     </form>
+    </div>
 </@c.page>

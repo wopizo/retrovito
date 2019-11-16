@@ -2,11 +2,12 @@
 <#include "parts/security.ftl">
 
 <@c.page>
+    <div class="w-50 mx-auto my-5">
 <#--    Позже создать макрос для инпутов-->
     <h2>Разместить объявление</h2>
     <form action="/create" method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label class="col-sm-2 col-form-label"> Изображение :</label>
+            <label class="col-sm-2 col-form-label"> Изображение:</label>
             <div class="col-sm-6">
                 <input type="file" name="picture" class="form-control" placeholder="Прикрепите изображение товара"/>
             </div>
@@ -50,6 +51,7 @@
             </div>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <button type="submit" class="btn btn-primary">Отправить</button>
+        <button type="submit" class="btn btn-dark">Отправить</button>
     </form>
+    </div>
 </@c.page>

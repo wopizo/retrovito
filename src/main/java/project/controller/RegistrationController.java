@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import project.domain.Role;
 import project.domain.User;
 import project.repos.UserRepo;
+import project.service.UserService;
 
 import java.util.Collections;
 
@@ -18,7 +19,7 @@ import java.util.Collections;
 public class RegistrationController {
 
     @Autowired
-    private UserRepo userRepo;
+    private UserService userService;
 
     @GetMapping
     public String registration(){
@@ -34,24 +35,13 @@ public class RegistrationController {
                           @RequestParam String phone,
                           @RequestParam String city,
                           Model model){
-        User userFromDb = userRepo.findByUsername(user.getUsername());
 
-        if(userFromDb != null){
+        boolean successfulAdd = userService.uddUser(user, name, sname, fname, email, phone, city);
+
+        if(!successfulAdd){
             model.addAttribute("message", "Пользователь с таким логином уже зарегестрирован!");
             return "registration";
         }
-
-        user.setActive(true);
-        user.setBlocked(false);
-        user.setName(name);
-        user.setSname(sname);
-        user.setFname(fname);
-        user.setEmail(email);
-        user.setPhone(phone);
-        user.setCity(city);
-        user.setRoles(Collections.singleton(Role.USER));
-
-        userRepo.save(user);
 
         return "redirect:/login";
     }

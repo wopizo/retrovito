@@ -1,6 +1,7 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
+    <div class="w-50 mx-auto mt-5">
     <h2>Авторизация</h2>
     <form action="/login" method="post">
         <div class="form-group">
@@ -16,7 +17,9 @@
             </div>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <button type="submit" class="btn btn-primary">Войти</button>
+        <button type="submit" class="btn btn-dark">Войти</button>
     </form>
-    <a href="/registration">Регистрация</a>
+        <a href="/registration">Регистрация</a>
+    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+    </div>
 </@c.page>

@@ -12,44 +12,31 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User extends TableModel implements UserDetails {
-
     @Column(name = "username")
     private String username;
-
     @Column(name = "password")
     private String password;
-
     @Column(name = "active")
     private boolean active;
-
     @Column(name = "blocked")
     private boolean blocked;
-
     @Column(name = "name")
     private String name;
-
     @Column(name = "sname")
     private String sname;
-
     @Column(name = "fname")
     private String fname;
-
     @Column(name = "email")
     private String email;
-
     @Column(name = "phone")
     private String phone;
-
     @Column(name = "picture")
     private String picture;
-
     @Column(name = "rating")
     private int rating;
-
     @Column(name = "date")
 //    @CreationTimestamp
     private Date date;
-
     @Column(name = "city")
     private String city;
 
