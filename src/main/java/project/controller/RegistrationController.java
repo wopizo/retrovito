@@ -7,8 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import project.domain.User;
 import project.service.UserService;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/registration")
@@ -24,15 +27,10 @@ public class RegistrationController {
 
     @PostMapping
     public String addUser(User user,
-                          @RequestParam String name,
-                          @RequestParam String sname,
-                          @RequestParam String fname,
-                          @RequestParam String email,
-                          @RequestParam String phone,
-                          @RequestParam String city,
-                          Model model){
+                          Model model,
+                          @RequestParam("pic") MultipartFile picture) throws IOException{
 
-        boolean successfulAdd = userService.uddUser(user, name, sname, fname, email, phone, city);
+        boolean successfulAdd = userService.uddUser(user, picture);
 
         if(!successfulAdd){
             model.addAttribute("message", "Пользователь с таким логином уже зарегестрирован!");

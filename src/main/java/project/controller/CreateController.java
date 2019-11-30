@@ -9,10 +9,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import project.domain.Advert;
 import project.domain.User;
+import project.domain.filters.Company;
+import project.domain.filters.Type;
 import project.service.AdvertService;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 @Controller
 @RequestMapping("/create")
@@ -22,24 +27,27 @@ public class CreateController {
     AdvertService advertService;
 
     @GetMapping
-    public String createPage() {
+    public String createPage(Model model) {
+        model.addAttribute("types", new ArrayList<Type>(Arrays.asList(Type.values())));
+        model.addAttribute("companies", new ArrayList<Company>(Arrays.asList(Company.values())));
         return "create";
     }
 
     @PostMapping
     public String add(
             @AuthenticationPrincipal User author,
-            @RequestParam("picture") MultipartFile picture,
-            @RequestParam String tittle,
-            @RequestParam String cost,
-            @RequestParam String type,
-            @RequestParam String company,
-            @RequestParam String city,
-            @RequestParam String description,
-            Model model) throws IOException {
+            Advert advert,
+            Model model,
+            @RequestParam("pic") MultipartFile picture) throws IOException {
 
-        advertService.addAdvert(author, picture, tittle, cost, type, company, city, description);
 
+        if (!advertService.validateCreation(advert, model)) {
+            model.addAttribute("types", new ArrayList<Type>(Arrays.asList(Type.values())));
+            model.addAttribute("companies", new ArrayList<Company>(Arrays.asList(Company.values())));
+            model.addAttribute("advert", advert);
+            return "create";
+        }
+        advertService.addAdvert(author, advert, picture);
         return "redirect:/main";
     }
 

@@ -1,31 +1,51 @@
 package project.domain;
 
+import org.hibernate.validator.constraints.Length;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
 @Table(name = "advert")
 public class Advert  extends TableModel{
+    @NotNull
     @Column(name = "tittle")
     private String tittle;
+
+    @Length(max = 2048, message = "DescLengSout")
     @Column(name = "description")
     private String description;
+
+    @NotNull
     @Column(name = "cost")
-    private String cost;
+    private Long cost;
+
+    @NotNull
     @Column(name = "type")
     private String type;
+
+    @NotNull
     @Column(name = "company")
     private String company;
+
     @Column(name = "picture")
     private String picture;
+
+    @NotNull
     @Column(name = "city")
     private String city;
+
     @Column(name = "active")
     private boolean active;
+
     @Column(name = "hasClient")
     private boolean hasClient;
+
     @Column(name = "date")
     private Date date;
+
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author")
@@ -43,7 +63,7 @@ public class Advert  extends TableModel{
 
     public Advert(User author,
                   String tittle,
-                  String cost,
+                  Long cost,
                   String type,
                   String company,
                   String city,
@@ -75,11 +95,11 @@ public class Advert  extends TableModel{
         this.description = description;
     }
 
-    public String getCost() {
+    public Long getCost() {
         return cost;
     }
 
-    public void setCost(String cost) {
+    public void setCost(Long cost) {
         this.cost = cost;
     }
 

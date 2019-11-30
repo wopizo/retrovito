@@ -3,7 +3,13 @@
     <div class="w-50 mx-auto my-5">
     <h2>Регистрация</h2>
     ${message?ifExists}
-    <form action="/registration" method="post">
+    <form action="/registration" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="col-sm-2 col-form-label"> Фото:</label>
+            <div class="col-sm-6">
+                <input type="file" name="pic" class="form-control" placeholder="Прикрепите фаше фото"/>
+            </div>
+        </div>
         <div class="form-group">
             <label class="col-sm-2 col-form-label"> Логин :</label>
             <div class="col-sm-6">

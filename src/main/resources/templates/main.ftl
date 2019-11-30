@@ -13,12 +13,12 @@
                     <#list adverts as advert>
                         <div class="col-md-3 col-sm-6 col-xs-12 card m-4 px-0" style="width: 18rem;">
                             <div class="card-header bg-secondary text-light">
-                                <h5 class="card-title">${advert.tittle}</h5>
+                                <h5 class="card-title"><a class="text-light" href="advert/${advert.id}">${advert.tittle}</a></h5>
                             </div>
                             <#if advert.picture??>
-                                <img class="card-img-top"  src="/img/${advert.picture}">
+                                <img class="card-img-top"  src="/img/advImages/${advert.picture}">
                             <#else>
-                                <b>Изображение не найдено</b>
+                                <img class="card-img-top"  src="/static/img/appImages/Empty.png">
                             </#if>
                             <div class="card-body">
                             <span class="card-text">
@@ -26,7 +26,7 @@
                                 Город: ${advert.city}</span>
                             </div>
                             <div class="card-footer text-dark">
-                                Разместил: ${advert.author.getName()}
+                                Разместил: <a href="user/${advert.author.id}"> ${advert.author.name}</a>
                             </div>
                         </div>
                     </#list>

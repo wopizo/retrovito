@@ -1,10 +1,10 @@
 package project.domain;
 
-import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Set;
@@ -12,33 +12,53 @@ import java.util.Set;
 @Entity
 @Table(name = "user")
 public class User extends TableModel implements UserDetails {
+    @NotNull
     @Column(name = "username")
     private String username;
+
+    @NotNull
     @Column(name = "password")
     private String password;
+
     @Column(name = "active")
     private boolean active;
+
     @Column(name = "blocked")
     private boolean blocked;
+
+    @NotNull
     @Column(name = "name")
     private String name;
+
     @Column(name = "sname")
     private String sname;
+
     @Column(name = "fname")
     private String fname;
+
+    @NotNull
     @Column(name = "email")
     private String email;
+
+    @NotNull
     @Column(name = "phone")
     private String phone;
+
     @Column(name = "picture")
     private String picture;
+
     @Column(name = "rating")
     private int rating;
+
     @Column(name = "date")
 //    @CreationTimestamp
     private Date date;
+
+    @NotNull
     @Column(name = "city")
     private String city;
+
+
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
