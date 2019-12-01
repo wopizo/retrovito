@@ -29,7 +29,7 @@
             <p>Номер мобильного телефона продавца: ${advert.author.phone}</p>
             <p>Электронная почта продавца: ${advert.author.email}</p>
             <#if advert.author.id != user.id>
-                <a href="#"><button class="btn btn-success m-3">Написать продавцу</button></a>
+                <a href="/chat/${advert.author.id}"><button class="btn btn-success m-3">Написать продавцу</button></a>
             </#if>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 mt-2">

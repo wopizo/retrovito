@@ -23,7 +23,7 @@
                     <span class="navbar-text dropdown-toggle ml-4" data-toggle="dropdown">${name}</span>
                        <ul class="dropdown-menu">
                            <li><a class="dropdown-item" href="/user/${id}">Моя страница</a></li>
-                           <li><a class="dropdown-item" href="#">Личные сообщения</a></li>
+                           <li><a class="dropdown-item" href="/chat">Личные сообщения</a></li>
                            <li><a class="dropdown-item" href="#">Мои объявления</a></li>
                            <li><a class="dropdown-item" href="#">Избранное</a></li>
                            <li><a class="dropdown-item" href="#">Тех. поддержка</a></li>

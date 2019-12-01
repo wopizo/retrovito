@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import project.domain.Role;
 import project.domain.User;
@@ -17,6 +18,7 @@ import java.util.Collections;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class UserService implements UserDetailsService {
     @Autowired
     private UserRepo userRepo;

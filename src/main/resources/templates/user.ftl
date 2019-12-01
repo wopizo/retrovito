@@ -18,7 +18,7 @@
             <h4>Контакты</h4>
             <p>Электронная почта: ${usr.email}</p>
             <p>Номер мобильного телефона: ${usr.phone}</p>
-            <#if usr.id != user.id><a href="#"><button class="btn btn-success m-3">Написать</button></a></#if>
+            <#if usr.id != user.id><a href="/chat/${usr.id}"><button class="btn btn-success m-3">Написать</button></a></#if>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 mt-2">
             <h2>Отзывы</h2>

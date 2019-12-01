@@ -1,4 +1,6 @@
-
+.card-img-top{
+    height: 250px;
+}
 .profileInfo{
     border: 3px solid black;
     border-radius: 3px;
@@ -6,6 +8,42 @@
 .profilePicture{
     border: 3px solid black;
     width: 100%;
+}
+.messageFrom{
+    border: 2px dotted cornflowerblue;
+    text-align: center;
+}
+.messageTo{
+    border: 2px dotted coral;
+    text-align: center;
+}
+
+.dateMessage{
+    text-align: right;
+    font-size: 10px;
+    color: #424242;
+}
+.authorMessage{
+    text-align: left;
+    font-size: 20px;
+    color: Black;
+}
+
+#chat{
+    height: 480px;
+    overflow: auto;
+    border: 3px solid black;
+    border-radius: 3px;
+}
+
+#allChat{
+    height: 580px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.messageInput {
+    width: 100% !important;
 }
 
 img{

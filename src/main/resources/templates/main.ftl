@@ -20,12 +20,9 @@
                             <#else>
                                 <img class="card-img-top"  src="/static/img/appImages/Empty.png">
                             </#if>
-                            <div class="card-body">
-                            <span class="card-text">
+                            <div class="card-footer text-dark">
                                 Цена: ${advert.cost}<br/>
                                 Город: ${advert.city}</span>
-                            </div>
-                            <div class="card-footer text-dark">
                                 Разместил: <a href="user/${advert.author.id}"> ${advert.author.name}</a>
                             </div>
                         </div>
