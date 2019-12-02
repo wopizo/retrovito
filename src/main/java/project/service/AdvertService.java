@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
+import project.dao.AdvertDAO;
 import project.domain.Advert;
 import project.domain.User;
 import project.repos.AdvertRepo;
@@ -22,6 +23,9 @@ public class AdvertService {
 
     @Autowired
     private AdvertRepo advertRepo;
+
+    @Autowired
+    private AdvertDAO advertDAO;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -54,31 +58,50 @@ public class AdvertService {
         return advertRepo.findAll();
     }
 
-    public boolean validateCreation(Advert advert, Model model){
+
+    public List<Advert> search(String search, Long froom, Long too, String type, String company) {
+        if(type.equals(""))type=null;
+        if(company.equals(""))company=null;
+        List<Advert> adverts = advertDAO.filter(froom, too, type, company);
+
+        if (search != null && !search.equals("")) {
+            List<Advert> results = new ArrayList<>();
+            for (Advert a : adverts) {
+                if (a.getTittle().toLowerCase().contains(search.toLowerCase())){
+                    results.add(a);
+                }
+            }
+            return results;
+        }
+
+        return adverts;
+    }
+
+    public boolean validateCreation(Advert advert, Model model) {
         boolean allIsFine = true;
         List<String> errors = new ArrayList<>();
 
-        if(advert.getTittle() == null || advert.getTittle().equals("")){
+        if (advert.getTittle() == null || advert.getTittle().equals("")) {
             model.addAttribute("tittleError", "Введите заголовок");
             errors.add("Введите заголовок");
             allIsFine = false;
         }
 
-        if(advert.getCost() == null || advert.getCost().equals("")){
+        if (advert.getCost() == null || advert.getCost().equals("")) {
             model.addAttribute("costError", "Укажите цену вашего лота");
             errors.add("Укажите цену вашего лота");
             allIsFine = false;
         }
 
-        if(advert.getType() == null || advert.getType().equals("")){
+        if (advert.getType() == null || advert.getType().equals("")) {
             errors.add("Укажите тип лота");
             allIsFine = false;
         }
-        if(advert.getCompany() == null || advert.getCompany().equals("")){
+        if (advert.getCompany() == null || advert.getCompany().equals("")) {
             errors.add("Укажите производителя");
             allIsFine = false;
         }
-        if(advert.getCity() == null || advert.getCity().equals("")){
+        if (advert.getCity() == null || advert.getCity().equals("")) {
             model.addAttribute("cityError", "Укажите город, в котором находится товар");
             errors.add("Укажите город, в котором находится товар");
             allIsFine = false;

@@ -1,7 +1,7 @@
 <#include "security.ftl">
 
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <a class="navbar-brand" href="/">Retrovito</a>
+    <a class="navbar-brand" href="/"><img id="logo" src="/img/appImages/Gamepad.png">  Retrovito</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -25,7 +25,8 @@
                            <li><a class="dropdown-item" href="/user/${id}">Моя страница</a></li>
                            <li><a class="dropdown-item" href="/chat">Личные сообщения</a></li>
                            <li><a class="dropdown-item" href="#">Мои объявления</a></li>
-                           <li><a class="dropdown-item" href="#">Избранное</a></li>
+                           <li><a class="dropdown-item" href="#">Мои покупки</a></li>
+                           <li><a class="dropdown-item" href="#">История сделок</a></li>
                            <li><a class="dropdown-item" href="#">Тех. поддержка</a></li>
                        </ul>
                 </li>

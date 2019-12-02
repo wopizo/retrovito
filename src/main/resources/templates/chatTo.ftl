@@ -3,6 +3,14 @@
 
 <@c.page>
     <div class="row my-3" id="allChat">
+        <div class="col-md-12 col-sm-12 col-xs-12" id="chatHeader">
+            <#if toUser.picture??>
+                <img class="chatImg" src="/img/userImages/${toUser.picture}">
+            <#else>
+                <img class="chatImg" src="/img/appImages/UserEmpty.jpg">
+            </#if>
+            <a href="/user/${toUser.id}">${toUser.name}</a>
+        </div>
         <div class="col-md-12 col-sm-12 col-xs-12 row chatDiv" id="chat">
             <#if messages??>
                 <#list messages as message>
@@ -10,7 +18,8 @@
                         <div class="col-md-6 col-sm-6 col-xs-6"></div></#if>
                     <div class="col-md-6 col-sm-6 col-xs-6 p-1 my-1
                         <#if message.userFrom.id == thisUser.id>messageFrom<#else>messageTo</#if>">
-                        <p class="authorMessage"><a class="text-dark" href="/user/${message.userFrom.id}">${message.userFrom.name}</a></p>
+                        <p class="authorMessage"><a class="text-dark"
+                                                    href="/user/${message.userFrom.id}">${message.userFrom.name}</a></p>
                         ${message.message}
                         <p class="dateMessage">${message.date}</p>
                     </div>
@@ -19,7 +28,7 @@
                 </#list>
             </#if>
         </div>
-        <div class="container-fluid">
+        <div class="container-fluid p-1 mt-1" id="chatFooter">
             <form action="/chat" method="post">
                 <div class="row">
                     <div class="col-md-9 col-sm-9 col-xs-9">
