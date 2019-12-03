@@ -8,8 +8,18 @@
     float: none;
 }
 
+.card-header{
+    height: 61px !important;
+    overflow: hidden;
+}
+
+.card-footer{
+    height: 105px !important;
+    overflow: auto;
+}
+
 .card-img-top{
-    height: 250px;
+    height: 250px !important;
 }
 .profileInfo{
     border: 3px solid black;
@@ -22,10 +32,12 @@
 .messageFrom{
     border: 2px dotted cornflowerblue;
     text-align: center;
+    height: 110px !important;
 }
 .messageTo{
     border: 2px dotted coral;
     text-align: center;
+    height: 110px !important;
 }
 
 .dateMessage{
@@ -84,6 +96,13 @@
     height: 570px;
     width: 90%;
     margin: 0 auto;
+}
+
+#allChats{
+    height: 570px;
+    width: 90%;
+    margin: 0 auto;
+    overflow: auto;
 }
 
 #toCreateBtn{

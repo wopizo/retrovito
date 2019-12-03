@@ -59,11 +59,7 @@ public class AdvertService {
     }
 
 
-    public List<Advert> search(String search, Long froom, Long too, String type, String company) {
-        if(type.equals(""))type=null;
-        if(company.equals(""))company=null;
-        List<Advert> adverts = advertDAO.filter(froom, too, type, company);
-
+    public Iterable<Advert> search(String search, Iterable<Advert> adverts) {
         if (search != null && !search.equals("")) {
             List<Advert> results = new ArrayList<>();
             for (Advert a : adverts) {
@@ -73,41 +69,46 @@ public class AdvertService {
             }
             return results;
         }
-
         return adverts;
     }
 
+    public List<Advert> filterAndSort(Long froom, Long too, String type, String company, String sort){
+        if(type.equals(""))type=null;
+        if(company.equals(""))company=null;
+        return advertDAO.filterAndSort(froom, too, type, company, sort);
+    }
+
     public boolean validateCreation(Advert advert, Model model) {
-        boolean allIsFine = true;
         List<String> errors = new ArrayList<>();
 
         if (advert.getTittle() == null || advert.getTittle().equals("")) {
             model.addAttribute("tittleError", "Введите заголовок");
             errors.add("Введите заголовок");
-            allIsFine = false;
         }
 
         if (advert.getCost() == null || advert.getCost().equals("")) {
             model.addAttribute("costError", "Укажите цену вашего лота");
             errors.add("Укажите цену вашего лота");
-            allIsFine = false;
+        }else{
+            try {
+                Long.parseLong(advert.getCost().toString());
+            } catch (NumberFormatException nfe) {
+                errors.add("Цена может быть только целым числом");
+            }
         }
 
         if (advert.getType() == null || advert.getType().equals("")) {
             errors.add("Укажите тип лота");
-            allIsFine = false;
         }
         if (advert.getCompany() == null || advert.getCompany().equals("")) {
             errors.add("Укажите производителя");
-            allIsFine = false;
         }
         if (advert.getCity() == null || advert.getCity().equals("")) {
             model.addAttribute("cityError", "Укажите город, в котором находится товар");
             errors.add("Укажите город, в котором находится товар");
-            allIsFine = false;
         }
         model.addAttribute("errors", errors);
-        return allIsFine;
+        return errors.isEmpty();
     }
 
 }

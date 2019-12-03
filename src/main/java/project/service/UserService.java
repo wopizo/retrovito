@@ -60,4 +60,8 @@ public class UserService implements UserDetailsService {
 
         return true;
     }
+
+    public User getTechUser(){
+        return userRepo.getOne(new Long(-1));
+    }
 }

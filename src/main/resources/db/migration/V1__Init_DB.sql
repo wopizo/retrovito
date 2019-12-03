@@ -30,7 +30,6 @@ create table user (
     password varchar(255) not null,
     phone varchar(255) not null,
     picture varchar(255),
-    rating integer,
     sname varchar(255),
     username varchar(255) not null,
     primary key (id)
@@ -52,8 +51,8 @@ alter table user_role
 
 
 
-insert into user(id, username, password, active, blocked, city, email, name, phone, rating)
-    values (1, 'admin', '123', true, false, 'Саратов', 'wopizoli@gmail.com', 'Илья', '+79873556990', 0);
+insert into user(id, username, password, active, blocked, city, email, name, phone, date)
+    values (1, 'admin', '123', true, false, 'Саратов', 'wopizoli@gmail.com', 'Илья', '+79873556990', '2019-12-01 00-00-00');
 
 insert into user_role(user_id, roles)
     values (1, 'USER'), (1, 'ADMIN');

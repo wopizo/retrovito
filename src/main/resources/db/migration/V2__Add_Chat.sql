@@ -1,7 +1,7 @@
 create table message (
                         id bigint not null,
-                        userFrom bigint,
-                        userTo bigint,
+                        user_from bigint,
+                        user_to bigint,
                         message varchar(2048) not null,
                         date datetime,
                         checked bit,
@@ -10,8 +10,8 @@ create table message (
 
 alter table message
     add constraint message_userFrom_fk
-        foreign key (userFrom) references user (id);
+        foreign key (user_from) references user (id);
 
 alter table message
     add constraint message_userTo_fk
-        foreign key (userTo) references user (id);
+        foreign key (user_to) references user (id);

@@ -13,6 +13,6 @@
     <#assign
         name = "unknown"
         isAdmin = false
-        id = 0
+        id = -100
     >
 </#if>

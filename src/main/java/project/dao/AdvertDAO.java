@@ -15,13 +15,13 @@ public class AdvertDAO {
     @PersistenceContext(unitName = "entityManagerFactory")
     private EntityManager em;
 
-    public List<Advert> filter(Long froom, Long too, String type, String company) {
+    public List<Advert> filterAndSort(Long froom, Long too, String type, String company, String sort) {
         String query = "SELECT * FROM advert " +
                 "WHERE IF ( :froom IS NOT NULL, cost > :froom, TRUE ) " +
                 "AND IF ( :too IS NOT NULL, cost < :too, TRUE )" +
                 "AND IF ( :type IS NOT NULL, type = :type, TRUE )" +
                 "AND IF ( :company IS NOT NULL, company = :company, TRUE )" +
-                "ORDER BY date DESC";
+                "ORDER BY " + sort;
         return em.createNativeQuery(query, Advert.class)
                 .setParameter("froom", froom)
                 .setParameter("too", too)

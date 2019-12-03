@@ -4,6 +4,7 @@
 <@c.page>
     <div class="row my-3" id="allChat">
         <div class="col-md-12 col-sm-12 col-xs-12" id="chatHeader">
+            <a href="/chat">Назад к диалогам        </a>
             <#if toUser.picture??>
                 <img class="chatImg" src="/img/userImages/${toUser.picture}">
             <#else>
@@ -29,7 +30,7 @@
             </#if>
         </div>
         <div class="container-fluid p-1 mt-1" id="chatFooter">
-            <form action="/chat" method="post">
+            <form action="<#if techChat?? && techChat>/techChat<#else>/chat</#if>" method="post">
                 <div class="row">
                     <div class="col-md-9 col-sm-9 col-xs-9">
                         <input type="text" name="message" class="form-control messageInput"

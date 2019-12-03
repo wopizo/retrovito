@@ -48,7 +48,7 @@ public class CreateController {
             return "create";
         }
         advertService.addAdvert(author, advert, picture);
-        return "redirect:/main";
+        return "redirect:/";
     }
 
 }

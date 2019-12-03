@@ -6,33 +6,35 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "message")
-public class Message extends MessageModel{
-    @Column(name = "checked")
-    private boolean checked;
+@Table(name = "review")
+public class Review extends MessageModel{
+
+    @Column(name = "mark")
+    private boolean mark;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_to")
     private User userTo;
 
-    public Message() {
+    public Review() {
     }
 
-    public Message(User userFrom,
+    public Review(User userFrom,
                    User userTo,
+                   boolean mark,
                    @Length(max = 2048, message = "MessageLengSout") @NotNull String message) {
         this.setUserFrom(userFrom);
         this.userTo = userTo;
         this.setMessage(message);
-        this.checked = false;
+        this.mark = mark;
     }
 
-    public boolean isChecked() {
-        return checked;
+    public boolean isMark() {
+        return mark;
     }
 
-    public void setChecked(boolean checked) {
-        this.checked = checked;
+    public void setMark(boolean mark) {
+        this.mark = mark;
     }
 
     public User getUserTo() {
@@ -43,3 +45,4 @@ public class Message extends MessageModel{
         this.userTo = userTo;
     }
 }
+

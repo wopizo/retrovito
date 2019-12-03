@@ -23,12 +23,14 @@ public class MainController {
 
     @GetMapping("/main")
     public String mainPage(@RequestParam String search,
+                           @RequestParam String sort,
                            @RequestParam Long froom,
                            @RequestParam Long too,
                            @RequestParam String type,
                            @RequestParam String company,
                            Model model) {
-        Iterable<Advert> adverts = advertService.search(search,froom,too,type,company);
+        Iterable<Advert> adverts = advertService.filterAndSort(froom,too,type,company,sort);
+        adverts = advertService.search(search, adverts);
         model.addAttribute("adverts", adverts);
         model.addAttribute("types", new ArrayList<Type>(Arrays.asList(Type.values())));
         model.addAttribute("companies", new ArrayList<Company>(Arrays.asList(Company.values())));
@@ -37,7 +39,7 @@ public class MainController {
 
     @GetMapping
     public String mainPageAgain(Model model) {
-        return mainPage(null, null, null, "","", model);
+        return mainPage(null, "date DESC", null, null, "","", model);
     }
 
 }

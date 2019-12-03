@@ -18,10 +18,54 @@
             <h4>Контакты</h4>
             <p>Электронная почта: ${usr.email}</p>
             <p>Номер мобильного телефона: ${usr.phone}</p>
-            <#if usr.id != user.id><a href="/chat/${usr.id}"><button class="btn btn-success m-3">Написать</button></a></#if>
+            <p>Рейтинг: ${rating}</p>
+            <#if usr.id != user.id><a href="/chat/${usr.id}">
+                    <button class="btn btn-success m-3">Написать</button></a></#if>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 mt-2">
             <h2>Отзывы</h2>
+            <div class="container-fluid p-1 mt-1" id="chatFooter">
+                <form action="addReview" method="post">
+                    <div class="row">
+                        <div class="col-md-8 col-sm-8 col-xs-8">
+                            <input type="text" name="message" class="form-control messageInput"
+                                   placeholder="Введите сообщение"/>
+                        </div>
+                        <div class="col-md-1 col-sm-1 col-xs-1">
+                                <select name="mark">
+                                    <option selected value="1">Лайк</option>
+                                    <option value="0">Дизлайк</option>
+                                </select>
+                        </div>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                        <input type="hidden" name="userTo" value="${usr.id}">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <button type="submit" class="btn btn-dark btn-sm col-sm-3">Отправить</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <#if reviews??>
+                <#list reviews as review>
+                    <div class="col-md-12 col-sm-12 col-xs-12 my-1 chat">
+                        <#if review.userFrom.picture??>
+                            <img class="chatImg" src="/img/userImages/${review.userFrom.picture}">
+                        <#else>
+                            <img class="chatImg" src="/img/appImages/UserEmpty.jpg">
+                        </#if>
+                        <a href="/user/${review.userFrom.id}">${review.userFrom.name}</a>
+                        <div class="viewMessage">
+                            ${review.message}
+                        </div>
+                        <#if review.mark>
+                            Лайк
+                        <#else>
+                            Дизлайк
+                        </#if>
+                        (${review.date})
+                    </div>
+                </#list>
+            </#if>
         </div>
     </div>
 </@c.page>

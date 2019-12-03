@@ -47,9 +47,6 @@ public class User extends TableModel implements UserDetails {
     @Column(name = "picture")
     private String picture;
 
-    @Column(name = "rating")
-    private int rating;
-
     @Column(name = "date")
 //    @CreationTimestamp
     private Date date;
@@ -190,14 +187,6 @@ public class User extends TableModel implements UserDetails {
 
     public void setPicture(String picture) {
         this.picture = picture;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
     }
 
     public Date getDate() {

@@ -15,7 +15,7 @@
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="#">Управление пользователями</a></li>
                             <li><a class="dropdown-item" href="#">Управление объявлениями</a></li>
-                            <li><a class="dropdown-item" href="#">Тех. поддержка</a></li>
+                            <li><a class="dropdown-item" href="/techChat">Тех. поддержка</a></li>
                         </ul>
                     </li>
                 </#if>
@@ -27,7 +27,7 @@
                            <li><a class="dropdown-item" href="#">Мои объявления</a></li>
                            <li><a class="dropdown-item" href="#">Мои покупки</a></li>
                            <li><a class="dropdown-item" href="#">История сделок</a></li>
-                           <li><a class="dropdown-item" href="#">Тех. поддержка</a></li>
+                           <li><a class="dropdown-item" href="/chat/-1">Тех. поддержка</a></li>
                        </ul>
                 </li>
                 <li class="nav-item ">

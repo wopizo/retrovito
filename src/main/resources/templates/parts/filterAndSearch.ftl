@@ -11,6 +11,17 @@
             </div>
         </div>
         <div class="col-sm-12 row my-2">
+            <label class="col-sm-3 col-form-label">Сортировать:</label>
+            <div class="col-sm-9">
+                <select name="sort">
+                    <option selected value="date DESC">по дате(от новых к старым)</option>
+                    <option value="date ASC">по дате(от старых к новым)</option>
+                    <option value="cost DESC">по цене(от дорогих к дешевым)</option>
+                    <option value="cost ASC">по цене(от дешевых к дорогим)</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-sm-12 row my-2">
             <label class="col-sm-3 col-form-label">От:</label>
             <div class="col-sm-9">
                 <input type="number" name="froom" class="form-control numberField" placeholder="Цена от"/>
