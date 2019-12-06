@@ -39,9 +39,6 @@ public class Advert  extends TableModel{
     @Column(name = "active")
     private boolean active;
 
-    @Column(name = "hasClient")
-    private boolean hasClient;
-
     @Column(name = "date")
     private Date date;
 
@@ -50,6 +47,10 @@ public class Advert  extends TableModel{
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "author")
     private User author;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "buyer")
+    private User buyer;
 
     @PrePersist
     private void onCreate(){
@@ -62,6 +63,7 @@ public class Advert  extends TableModel{
     }
 
     public Advert(User author,
+                  User buyer,
                   String tittle,
                   Long cost,
                   String type,
@@ -76,7 +78,7 @@ public class Advert  extends TableModel{
         this.city = city;
         this.author = author;
         this.active = true;
-        this.hasClient = true;
+        this.buyer = buyer;
     }
 
     public String getTittle() {
@@ -143,14 +145,6 @@ public class Advert  extends TableModel{
         this.active = active;
     }
 
-    public boolean isHasClient() {
-        return hasClient;
-    }
-
-    public void setHasClient(boolean hasClient) {
-        this.hasClient = hasClient;
-    }
-
     public Date getDate() {
         return date;
     }
@@ -165,5 +159,13 @@ public class Advert  extends TableModel{
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public User getBuyer() {
+        return buyer;
+    }
+
+    public void setBuyer(User buyer) {
+        this.buyer = buyer;
     }
 }

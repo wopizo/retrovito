@@ -11,7 +11,7 @@
             </#if>
         </div>
         <div class="col-md-9 col-sm-12 col-xs-12">
-            <h2>${usr.name} <#if usr.sname??>${usr.sname}</#if> <#if usr.fname??>${usr.fname}</#if></h2>
+            <h2><#if usr.sname??>${usr.sname} </#if>${usr.name}<#if usr.fname??> ${usr.fname}</#if></h2>
             <h4>О пользователе</h4>
             <p>Город проживания: ${usr.city}</p>
             <p>Дата регистрации: <#if usr.date??>${usr.date}<#else>Неизвестно</#if></p>
@@ -45,27 +45,39 @@
                     </div>
                 </form>
             </div>
-            <#if reviews??>
-                <#list reviews as review>
-                    <div class="col-md-12 col-sm-12 col-xs-12 my-1 chat">
-                        <#if review.userFrom.picture??>
-                            <img class="chatImg" src="/img/userImages/${review.userFrom.picture}">
-                        <#else>
-                            <img class="chatImg" src="/img/appImages/UserEmpty.jpg">
-                        </#if>
-                        <a href="/user/${review.userFrom.id}">${review.userFrom.name}</a>
-                        <div class="viewMessage">
-                            ${review.message}
-                        </div>
-                        <#if review.mark>
-                            Лайк
-                        <#else>
-                            Дизлайк
-                        </#if>
-                        (${review.date})
-                    </div>
-                </#list>
-            </#if>
+            <table class="table">
+                <tbody>
+                <#if reviews??>
+                    <#list reviews as review>
+                        <tr>
+                            <td>
+                                <#if review.userFrom.picture??>
+                                    <img class="messagePic" src="/img/userImages/${review.userFrom.picture}">
+                                <#else>
+                                    <img class="messagePic" src="/img/appImages/UserEmpty.jpg">
+                                </#if>
+                            </td>
+                            <td>
+                                <a href="/user/${review.userFrom.id}">${review.userFrom.name}</a>
+                            </td>
+                            <td>
+                                ${review.message}
+                            </td>
+                            <td>
+                                <#if review.mark>
+                                    Лайк
+                                <#else>
+                                    Дизлайк
+                                </#if>
+                            </td>
+                            <td>
+                                ${review.date}
+                            </td>
+                        </tr>
+                    </#list>
+                </#if>
+                </tbody>
+            </table>
         </div>
     </div>
 </@c.page>

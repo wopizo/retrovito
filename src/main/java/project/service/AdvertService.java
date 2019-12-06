@@ -10,6 +10,7 @@ import project.dao.AdvertDAO;
 import project.domain.Advert;
 import project.domain.User;
 import project.repos.AdvertRepo;
+import project.repos.UserRepo;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,9 @@ public class AdvertService {
     @Autowired
     private AdvertDAO advertDAO;
 
+    @Autowired
+    private UserRepo userRepo;
+
     @Value("${upload.path}")
     private String uploadPath;
 
@@ -34,7 +38,6 @@ public class AdvertService {
 
         advert.setAuthor(author);
         advert.setActive(true);
-        advert.setHasClient(false);
 
         if (picture != null && !picture.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath + "/advImages");
@@ -73,9 +76,29 @@ public class AdvertService {
     }
 
     public List<Advert> filterAndSort(Long froom, Long too, String type, String company, String sort){
-        if(type.equals(""))type=null;
-        if(company.equals(""))company=null;
+        if(type != null && type.equals(""))type=null;
+        if(company != null && company.equals(""))company=null;
         return advertDAO.filterAndSort(froom, too, type, company, sort);
+    }
+
+    public List<Advert> getAllUserAdverts(User user){
+        return advertRepo.findByAuthorOrderByDateDesc(user);
+    }
+
+    public List<Advert> getAllUserGoods(User user){
+        return advertRepo.findByBuyerOrderByDateDesc(user);
+    }
+
+    public Advert getOne(Long id){
+        return advertRepo.findById(id).get();
+    }
+
+    public void changeBuyer(Long advertId, Long buyerId){
+        if(buyerId != null) {
+            Advert advert = advertRepo.findById(advertId).get();
+            User buyer = userRepo.getOne(buyerId);
+            advert.setBuyer(buyer);
+        }
     }
 
     public boolean validateCreation(Advert advert, Model model) {
@@ -110,5 +133,7 @@ public class AdvertService {
         model.addAttribute("errors", errors);
         return errors.isEmpty();
     }
+
+
 
 }

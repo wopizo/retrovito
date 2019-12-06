@@ -6,11 +6,11 @@ create table advert (
     cost bigint not null,
     date datetime,
     description varchar(2048),
-    has_client bit,
     picture varchar(255),
     tittle varchar(255) not null,
     type varchar(255) not null,
     author bigint,
+    buyer bigint,
     primary key (id)
 );
 
@@ -41,8 +41,12 @@ create table user_role (
 );
 
 alter table advert
-    add constraint advert_user_fk
+    add constraint advert_author_fk
     foreign key (author) references user (id);
+
+alter table advert
+    add constraint advert_buyer_fk
+    foreign key (buyer) references user (id);
 
 alter table user_role
     add constraint user_role_user_fk
@@ -52,7 +56,9 @@ alter table user_role
 
 
 insert into user(id, username, password, active, blocked, city, email, name, phone, date)
-    values (1, 'admin', '123', true, false, 'Саратов', 'wopizoli@gmail.com', 'Илья', '+79873556990', '2019-12-01 00-00-00');
+    values
+    (1, 'admin', '123', true, false, 'Саратов', 'wopizoli@gmail.com', 'Илья', '+79873556990', '2019-12-01 00-10-00'),
+    (-1, 'root', '123', true, false, 'Саратов', 'wopizoli@gmail.com', 'Администрация', '+79873556990', '2019-12-01 00-00-00');
 
 insert into user_role(user_id, roles)
-    values (1, 'USER'), (1, 'ADMIN');
+    values (1, 'USER'), (1, 'ADMIN'), (-1, 'USER'), (-1, 'ADMIN');

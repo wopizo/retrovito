@@ -36,7 +36,7 @@ public class MessageService {
         return messageDAO.getUserChats(from);
     }
 
-    public boolean uddMessage(User from, Long toId, String message) {
+    public boolean addMessage(User from, Long toId, String message) {
 
         if (message.equals("") || message == null) {
             return false;

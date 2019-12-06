@@ -13,8 +13,7 @@
                     <li class="nav-item dropdown ">
                         <span class="navbar-text dropdown-toggle ml-4" data-toggle="dropdown">Администратор</span>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Управление пользователями</a></li>
-                            <li><a class="dropdown-item" href="#">Управление объявлениями</a></li>
+                            <li><a class="dropdown-item" href="/admin">Статистика и управление</a></li>
                             <li><a class="dropdown-item" href="/techChat">Тех. поддержка</a></li>
                         </ul>
                     </li>
@@ -24,9 +23,9 @@
                        <ul class="dropdown-menu">
                            <li><a class="dropdown-item" href="/user/${id}">Моя страница</a></li>
                            <li><a class="dropdown-item" href="/chat">Личные сообщения</a></li>
-                           <li><a class="dropdown-item" href="#">Мои объявления</a></li>
-                           <li><a class="dropdown-item" href="#">Мои покупки</a></li>
-                           <li><a class="dropdown-item" href="#">История сделок</a></li>
+                           <li><a class="dropdown-item" href="/myAdverts">Мои объявления</a></li>
+                           <li><a class="dropdown-item" href="/myGoods">Мои покупки</a></li>
+                           <li><a class="dropdown-item" href="/myDeals">История сделок</a></li>
                            <li><a class="dropdown-item" href="/chat/-1">Тех. поддержка</a></li>
                        </ul>
                 </li>

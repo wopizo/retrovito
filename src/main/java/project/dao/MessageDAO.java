@@ -24,7 +24,10 @@ public class MessageDAO{
 
     public List<Message> getThisToUser(User from, User to) {
         return em.createNativeQuery(
-                "SELECT * FROM message WHERE user_from = :idFrom AND user_to = :idTo OR user_from = :idTo AND user_to = :idFrom ORDER BY date",
+                "SELECT * FROM message " +
+                        "WHERE user_from = :idFrom AND user_to = :idTo " +
+                        "OR user_from = :idTo AND user_to = :idFrom " +
+                        "ORDER BY date",
                 Message.class)
                 .setParameter("idFrom", from.getId())
                 .setParameter("idTo", to.getId())

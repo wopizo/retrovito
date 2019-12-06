@@ -37,15 +37,10 @@ alter table review
 
 create table deal(
                        id bigint not null,
-                       buyer bigint,
                        advert bigint,
                        date datetime,
                        primary key (id)
 );
-
-alter table deal
-    add constraint deal_buyer_fk
-        foreign key (buyer) references user (id);
 
 alter table deal
     add constraint deal_advert_fk

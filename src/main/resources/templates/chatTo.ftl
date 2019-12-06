@@ -4,15 +4,21 @@
 <@c.page>
     <div class="row my-3" id="allChat">
         <div class="col-md-12 col-sm-12 col-xs-12" id="chatHeader">
-            <a href="/chat">Назад к диалогам        </a>
-            <#if toUser.picture??>
-                <img class="chatImg" src="/img/userImages/${toUser.picture}">
+            <a <#if techChat?? && techChat>
+                href="/techChat"
             <#else>
-                <img class="chatImg" src="/img/appImages/UserEmpty.jpg">
+                href="/chat"
+            </#if>
+            >Назад к диалогам
+            </a>
+            <#if toUser.picture??>
+                <img class="messagePic" src="/img/userImages/${toUser.picture}">
+            <#else>
+                <img class="messagePic" src="/img/appImages/UserEmpty.jpg">
             </#if>
             <a href="/user/${toUser.id}">${toUser.name}</a>
         </div>
-        <div class="col-md-12 col-sm-12 col-xs-12 row chatDiv" id="chat">
+        <div class="col-md-12 col-sm-12 col-xs-12 row" id="chat">
             <#if messages??>
                 <#list messages as message>
                     <#if message.userFrom.id == toUser.id>

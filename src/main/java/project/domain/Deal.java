@@ -8,10 +8,6 @@ import java.util.Date;
 public class Deal extends TableModel{
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "buyer")
-    private User buyer;
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "advert")
     private Advert advert;
 
@@ -28,10 +24,8 @@ public class Deal extends TableModel{
     public Deal() {
     }
 
-    public Deal(User buyer, Advert advert, Date date) {
-        this.buyer = buyer;
+    public Deal(Advert advert) {
         this.advert = advert;
-        this.date = date;
     }
 
     public Date getDate() {
@@ -40,14 +34,6 @@ public class Deal extends TableModel{
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public User getBuyer() {
-        return buyer;
-    }
-
-    public void setBuyer(User buyer) {
-        this.buyer = buyer;
     }
 
     public Advert getAdvert() {

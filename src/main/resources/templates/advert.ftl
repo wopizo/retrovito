@@ -18,7 +18,7 @@
             <p>Компания: ${advert.company}</p>
             <p>Город нахождения товара: ${advert.city}</p>
             <p>Дата публикации: ${advert.date}</p>
-            <p>Найден покупатель: <#if advert.hasClient>Да<#else>Еще нет</#if></p>
+            <p>Найден покупатель: <#if advert.buyer??>Да<#else>Еще нет</#if></p>
             <p>Состояние объявления: <#if advert.active>Активно<#else>Закрыто</#if></p>
             <#if advert.description??>
                 <h4>Комментарии продавца к товару</h4>
@@ -50,22 +50,32 @@
                     </div>
                 </form>
             </div>
-            <#if comments??>
-                <#list comments as comment>
-                    <div class="col-md-12 col-sm-12 col-xs-12 my-1 chat">
-                        <#if comment.userFrom.picture??>
-                            <img class="chatImg" src="/img/userImages/${comment.userFrom.picture}">
-                        <#else>
-                            <img class="chatImg" src="/img/appImages/UserEmpty.jpg">
-                        </#if>
-                        <a href="/user/${comment.userFrom.id}">${comment.userFrom.name}</a>
-                        <div class="viewMessage">
-                            ${comment.message}
-                        </div>
-                        (${comment.date})
-                    </div>
-                </#list>
-            </#if>
+            <table class="table">
+                <tbody>
+                <#if comments??>
+                    <#list comments as comment>
+                        <tr>
+                            <td>
+                                <#if comment.userFrom.picture??>
+                                    <img class="messagePic" src="/img/userImages/${comment.userFrom.picture}">
+                                <#else>
+                                    <img class="messagePic" src="/img/appImages/UserEmpty.jpg">
+                                </#if>
+                            </td>
+                            <td>
+                                <a href="/user/${comment.userFrom.id}">${comment.userFrom.name}</a>
+                            </td>
+                            <td>
+                                ${comment.message}
+                            </td>
+                            <td>
+                                ${comment.date}
+                            </td>
+                        </tr>
+                    </#list>
+                </#if>
+                </tbody>
+            </table>
         </div>
     </div>
 </@c.page>

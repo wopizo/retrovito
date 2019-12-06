@@ -51,21 +51,10 @@
     color: Black;
 }
 
-.chatImg{
-    height: 85px;
-    width: 85px;
-}
-
 .chat{
     height: 150px;
     border: 3px solid black;
     border-radius: 3px;
-}
-
-.viewMessage{
-    width: 60%;
-    display: inline-block;
-    overflow: hidden;
 }
 
 .numberField{
@@ -77,7 +66,7 @@
 }
 
 #chatHeader{
-    height: 90px;
+    height: 100px;
     text-align: center;
 }
 
@@ -98,13 +87,6 @@
     margin: 0 auto;
 }
 
-#allChats{
-    height: 570px;
-    width: 90%;
-    margin: 0 auto;
-    overflow: auto;
-}
-
 #toCreateBtn{
     margin: 25px 30% !important;
     width: 40% !important;
@@ -116,4 +98,13 @@
 
 img{
     width: 100%;
+}
+
+.messagePic{
+    height: 100px;
+    width: 100px;
+}
+
+.ucheckedBg{
+    background-color: #9c9c9c;
 }

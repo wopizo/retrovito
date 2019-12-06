@@ -2,7 +2,8 @@
 <#include "parts/security.ftl">
 
 <@c.page>
-    <div class="row my-3" id="allChats">
+    <table class="table">
+        <tbody>
         <#if chats??>
             <#list chats as chat>
                 <#if techChat?? && techChat>
@@ -30,25 +31,38 @@
                         >
                     </#if>
                 </#if>
-                <div class="col-md-12 col-sm-12 col-xs-12 my-1 chat">
-                    <#if that.picture??>
-                        <img class="chatImg" src="/img/userImages/${that.picture}">
-                    <#else>
-                        <img class="chatImg" src="/img/appImages/UserEmpty.jpg">
-                    </#if>
-                    <a href="/user/${that.id}">${that.name}</a>
-                    <div class="viewMessage <#if !chat.checked && chat.userTo.id == user.id>bg-secondary</#if>">
+                <tr class="<#if !chat.checked && chat.userTo.id == this.id>ucheckedBg</#if>">
+                    <td>
+                        <#if that.picture??>
+                            <img class="messagePic" src="/img/userImages/${that.picture}">
+                        <#else>
+                            <img class="messagePic" src="/img/appImages/UserEmpty.jpg">
+                        </#if>
+                    </td>
+                    <td>
+                        <a href="/user/${that.id}">${that.name}</a>
+                    </td>
+                    <td>
                         ${chat.userFrom.name}:
                         ${chat.message}
-                    </div>
-                    (${chat.date})
-                    <#if techChat?? && techChat>
-                        <a href="/techChat/${that.id}">К диалогу</a>
-                    <#else>
-                        <a href="/chat/${that.id}">К диалогу</a>
-                    </#if>
-                </div>
+                    </td>
+                    <td>
+                        ${chat.date}
+                    </td>
+                    <td>
+                        <a
+                        <#if techChat?? && techChat>
+                            href="/techChat/${that.id}"
+                        <#else>
+                            href="/chat/${that.id}"
+                        </#if>
+                        >
+                            <button class="btn btn-dark">К диалогу</button>
+                        </a>
+                    </td>
+                </tr>
             </#list>
         </#if>
-    </div>
+        </tbody>
+    </table>
 </@c.page>
