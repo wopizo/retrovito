@@ -12,12 +12,14 @@ public class Review extends MessageModel{
     @Column(name = "mark")
     private boolean mark;
 
+    @Column(name = "edited")
+    private boolean edited;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_to")
     private User userTo;
 
-    public Review() {
-    }
+    public Review(){}
 
     public Review(User userFrom,
                    User userTo,
@@ -43,6 +45,14 @@ public class Review extends MessageModel{
 
     public void setUserTo(User userTo) {
         this.userTo = userTo;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 }
 

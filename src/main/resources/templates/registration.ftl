@@ -2,7 +2,7 @@
 <@c.page>
     <div class="w-50 mx-auto my-5">
     <h2>Регистрация</h2>
-    ${message?ifExists}
+    <#if message??><span class="text-danger">${message}</span></#if>
     <form action="/registration" method="post" enctype="multipart/form-data">
         <div class="form-group">
             <label class="col-sm-2 col-form-label"> Фото:</label>
@@ -43,7 +43,7 @@
         <div class="form-group">
             <label class="col-sm-2 col-form-label"> Email :</label>
             <div class="col-sm-6">
-                <input type="text" name="email" class="form-control" placeholder="Введите адрес вашей электронной почты"/>
+                <input type="email" name="email" class="form-control" placeholder="Введите адрес вашей электронной почты"/>
             </div>
         </div>
         <div class="form-group">

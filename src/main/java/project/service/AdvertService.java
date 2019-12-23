@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import project.dao.AdvertDAO;
 import project.domain.Advert;
+import project.domain.Comment;
+import project.domain.Deal;
 import project.domain.User;
 import project.repos.AdvertRepo;
 import project.repos.UserRepo;
@@ -30,6 +32,12 @@ public class AdvertService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    CommentService commentService;
+
+    @Autowired
+    DealService dealService;
 
     @Value("${upload.path}")
     private String uploadPath;
@@ -94,11 +102,37 @@ public class AdvertService {
     }
 
     public void changeBuyer(Long advertId, Long buyerId){
-        if(buyerId != null) {
+        if(buyerId != null && buyerId != -10) {
             Advert advert = advertRepo.findById(advertId).get();
             User buyer = userRepo.getOne(buyerId);
             advert.setBuyer(buyer);
+        } else if(buyerId == -10){
+            Advert advert = advertRepo.findById(advertId).get();
+            advert.setBuyer(null);
         }
+    }
+
+    public void giveBan(Long id){
+        getOne(id).setActive(false);
+    }
+
+    public void removeBan(Long id){
+        getOne(id).setActive(true);
+    }
+
+    public void removeAdvert(Long id){
+        Advert advert = getOne(id);
+
+        for(Comment c: commentService.getAll(advert)){
+            commentService.removeComment(c.getId());
+        }
+
+        Deal deal = dealService.getByAdvert(advert);
+        if(deal != null){
+            dealService.removeDeal(deal.getId());
+        }
+
+        advertRepo.delete(advert);
     }
 
     public boolean validateCreation(Advert advert, Model model) {

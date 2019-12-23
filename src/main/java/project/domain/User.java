@@ -23,9 +23,6 @@ public class User extends TableModel implements UserDetails {
     @Column(name = "active")
     private boolean active;
 
-    @Column(name = "blocked")
-    private boolean blocked;
-
     @NotNull
     @Column(name = "name")
     private String name;
@@ -46,6 +43,9 @@ public class User extends TableModel implements UserDetails {
 
     @Column(name = "picture")
     private String picture;
+
+    @Column(name = "activationmess")
+    private String activationMessage;
 
     @Column(name = "date")
 //    @CreationTimestamp
@@ -71,6 +71,9 @@ public class User extends TableModel implements UserDetails {
 
     public boolean isAdmin(){
         return roles.contains(Role.ADMIN);
+    }
+    public boolean isBlocked(){
+        return roles.contains(Role.BLOCKED);
     }
 
     public User() {
@@ -131,14 +134,6 @@ public class User extends TableModel implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public boolean isBlocked() {
-        return blocked;
-    }
-
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
     }
 
     public String getName() {
@@ -203,6 +198,14 @@ public class User extends TableModel implements UserDetails {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public String getActivationMessage() {
+        return activationMessage;
+    }
+
+    public void setActivationMessage(String activationMessage) {
+        this.activationMessage = activationMessage;
     }
 }
 

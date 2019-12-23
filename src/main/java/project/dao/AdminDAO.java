@@ -20,7 +20,6 @@ public class AdminDAO {
                 "SELECT * FROM advert WHERE " +
                         "IF(:from IS NOT NULL, date >= :from, TRUE) " +
                         "AND IF(:to IS NOT NULL, date <= :to, TRUE) " +
-                        "AND active " +
                         "ORDER BY date DESC";
 
         return em.createNativeQuery(query, Advert.class)
@@ -35,6 +34,7 @@ public class AdminDAO {
                         "IF(:from IS NOT NULL, date >= :from, TRUE) " +
                         "AND IF(:to IS NOT NULL, date <= :to, TRUE) " +
                         "AND id > 0 " +
+                        "AND active " +
                         "ORDER BY date";
 
         return em.createNativeQuery(query, User.class)

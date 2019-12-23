@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface ReviewRepo extends CrudRepository<Review, Long> {
     List<Review> findByUserToOrderByDateDesc(User user);
+    List<Review>findByUserFrom(User user);
     Review findReviewByUserFromAndUserTo(User userFrom, User userTo);
 
 }

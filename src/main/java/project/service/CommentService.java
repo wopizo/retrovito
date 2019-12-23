@@ -18,12 +18,31 @@ public class CommentService{
         return commentRepo.findByAdvertOrderByDateDesc(advert);
     }
 
+    public Iterable<Comment> getAllByUser(User user){
+        return commentRepo.findByUserFrom(user);
+    }
+
     public boolean addComment(Comment comment, User user){
         comment.setUserFrom(user);
         if(comment.getMessage() != null && !comment.getMessage().equals("")){
+            comment.setEdited(false);
             commentRepo.save(comment);
             return true;
         }
         return false;
+    }
+
+    public void removeComment(Long id){
+        commentRepo.deleteById(id);
+    }
+
+    public Comment getOne(Long id){return commentRepo.findById(id).get();}
+
+    public void edit(Comment comment, String message) {
+        if(message != null && !message.equals("")){
+            comment.setMessage(message);
+            comment.setEdited(true);
+            commentRepo.save(comment);
+        }
     }
 }

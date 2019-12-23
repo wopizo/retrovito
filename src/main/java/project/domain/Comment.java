@@ -13,6 +13,9 @@ public class Comment extends MessageModel{
     @JoinColumn(name = "advert")
     private Advert advert;
 
+    @Column(name = "edited")
+    private boolean edited;
+
     public Comment() {
     }
 
@@ -30,5 +33,13 @@ public class Comment extends MessageModel{
 
     public void setAdvert(Advert advert) {
         this.advert = advert;
+    }
+
+    public boolean isEdited() {
+        return edited;
+    }
+
+    public void setEdited(boolean edited) {
+        this.edited = edited;
     }
 }

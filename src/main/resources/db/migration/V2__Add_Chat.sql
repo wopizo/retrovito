@@ -15,3 +15,4 @@ alter table message
 alter table message
     add constraint message_userTo_fk
         foreign key (user_to) references user (id);
+

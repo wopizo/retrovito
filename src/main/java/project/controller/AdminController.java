@@ -5,9 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import project.domain.*;
-import project.service.AdminService;
-import project.service.MessageService;
-import project.service.UserService;
+import project.service.*;
 
 import java.util.List;
 
@@ -22,6 +20,15 @@ public class AdminController {
 
     @Autowired
     AdminService adminService;
+
+    @Autowired
+    AdvertService advertService;
+
+    @Autowired
+    CommentService commentService;
+
+    @Autowired
+    ReviewService reviewService;
 
     @GetMapping("/techChat")
     public String showTechChats(Model model){
@@ -86,5 +93,39 @@ public class AdminController {
     @GetMapping("/admin")
     public String createPage(Model model){
         return showStatistic(null,null, null, model);
+    }
+
+    @PostMapping("/admin")
+    public String change(
+            @RequestParam String mode,
+            @RequestParam String entity,
+            @RequestParam Long id,
+            Model model){
+        if(entity.equals("user")){
+            if (mode.equals("giveAdmin")){
+                userService.giveAdmin(id);
+            }else if(mode.equals("removeAdmin")){
+                userService.removeAdmin(id);
+            }else if(mode.equals("giveBan")){
+                userService.giveBan(id);
+            }else if(mode.equals("removeBan")){
+                userService.removeBan(id);
+            }else{
+                userService.removeUser(id);
+            }
+        }else if(entity.equals("advert")){
+            if(mode.equals("giveBan")){
+                advertService.giveBan(id);
+            }else if(mode.equals("removeBan")){
+                advertService.removeBan(id);
+            }else{
+                advertService.removeAdvert(id);
+            }
+        }else if(entity.equals("comment")){
+            commentService.removeComment(id);
+        }else if(entity.equals("review")){
+            reviewService.removeReview(id);
+        }
+        return "redirect:/admin";
     }
 }

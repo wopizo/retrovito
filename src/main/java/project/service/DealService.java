@@ -36,4 +36,8 @@ public class DealService {
     public List<Deal> showDealsByBuyer(User user){
         return dealDAO.getAllByBuyer(user.getId());
     }
+
+    public Deal getByAdvert(Advert advert){return dealRepo.findDealByAdvert(advert);}
+
+    public void removeDeal(Long id){dealRepo.deleteById(id);}
 }

@@ -4,6 +4,7 @@ create table comment(
                          advert bigint,
                          message varchar(2048) not null,
                          date datetime,
+                         edited bit,
                          primary key (id)
 );
 
@@ -23,6 +24,7 @@ create table review(
                         message varchar(2048) not null,
                         date datetime,
                         mark bit,
+                        edited bit,
                         primary key (id)
 );
 

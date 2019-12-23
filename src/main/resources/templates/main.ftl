@@ -2,8 +2,8 @@
 <#include "parts/security.ftl">
 
 <@c.page>
-    <div class="row">
-        <div class="col-md-3 col-sm-12 col-xs-12 bg-secondary text-light">
+    <div class="row mainPanel">
+        <div class="col-md-3 col-sm-12 col-xs-12 bg-secondary text-light mainPanel">
             <#include "parts/filterAndSearch.ftl">
         </div>
         <div class="col-md-9">

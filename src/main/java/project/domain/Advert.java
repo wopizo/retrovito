@@ -168,4 +168,8 @@ public class Advert  extends TableModel{
     public void setBuyer(User buyer) {
         this.buyer = buyer;
     }
+
+    public boolean isBlocked(){
+        return !active;
+    }
 }

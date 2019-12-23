@@ -16,7 +16,7 @@
             <#else>
                 <img class="messagePic" src="/img/appImages/UserEmpty.jpg">
             </#if>
-            <a href="/user/${toUser.id}">${toUser.name}</a>
+            <a href="<#if toUser.id != -1>/user/${toUser.id}<#else>#</#if>">${toUser.name}</a>
         </div>
         <div class="col-md-12 col-sm-12 col-xs-12 row" id="chat">
             <#if messages??>
@@ -25,8 +25,7 @@
                         <div class="col-md-6 col-sm-6 col-xs-6"></div></#if>
                     <div class="col-md-6 col-sm-6 col-xs-6 p-1 my-1
                         <#if message.userFrom.id == thisUser.id>messageFrom<#else>messageTo</#if>">
-                        <p class="authorMessage"><a class="text-dark"
-                                                    href="/user/${message.userFrom.id}">${message.userFrom.name}</a></p>
+                        <p class="authorMessage">${message.userFrom.name}</p>
                         ${message.message}
                         <p class="dateMessage">${message.date}</p>
                     </div>
@@ -36,19 +35,23 @@
             </#if>
         </div>
         <div class="container-fluid p-1 mt-1" id="chatFooter">
-            <form action="<#if techChat?? && techChat>/techChat<#else>/chat</#if>" method="post">
-                <div class="row">
-                    <div class="col-md-9 col-sm-9 col-xs-9">
-                        <input type="text" name="message" class="form-control messageInput"
-                               placeholder="<#if error??>${error}<#else>Введите сообщение</#if>"/>
+            <#if (techChat?? && techChat) || toUser.id == -1 || !toUser.isBlocked()>
+                <form action="<#if techChat?? && techChat>/techChat<#else>/chat</#if>" method="post">
+                    <div class="row">
+                        <div class="col-md-9 col-sm-9 col-xs-9">
+                            <input type="text" maxlength="2000" name="message" class="form-control messageInput"
+                                   placeholder="<#if error??>${error}<#else>Введите сообщение</#if>"/>
+                        </div>
+                        <input type="hidden" name="_csrf" value="${_csrf.token}">
+                        <input type="hidden" name="userTo" value="${toUser.id}">
+                        <div class="col-md-3 col-sm-3 col-xs-3">
+                            <button type="submit" class="btn btn-dark btn-sm col-sm-3">Отправить</button>
+                        </div>
                     </div>
-                    <input type="hidden" name="_csrf" value="${_csrf.token}">
-                    <input type="hidden" name="userTo" value="${toUser.id}">
-                    <div class="col-md-3 col-sm-3 col-xs-3">
-                        <button type="submit" class="btn btn-dark btn-sm col-sm-3">Отправить</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            <#else>
+                Пользователь заблокирован
+            </#if>
         </div>
 
     </div>

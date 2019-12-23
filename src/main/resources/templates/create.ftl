@@ -28,10 +28,8 @@
             <div class="form-group">
                 <label class="col-sm-2 col-form-label"> Цена :</label>
                 <div class="col-sm-6">
-                    <input type="text" name="cost" class="form-control ${(costError??)?string('is-invalid', '')}"
-                           //NullPointer
-                            //TypeException
-                           value="<#if advert??>${advert.cost}</#if>" placeholder="Введите цену"/>
+                    <input type="number" name="cost" class="form-control ${(costError??)?string('is-invalid', '')}"
+                           value="<#if advert?? && advert.cost??>${advert.cost}</#if>" placeholder="Введите цену"/>
                 </div>
             </div>
             <div class="form-group">
@@ -70,7 +68,7 @@
             <div class="form-group">
                 <label class="col-sm-2 col-form-label"> Описание :</label>
                 <div class="col-sm-6">
-                    <input type="text" name="description" class="form-control" placeholder="Опишите товар"/>
+                    <input type="text" name="description" maxlength="2000" class="form-control" placeholder="Опишите товар"/>
                 </div>
             </div>
             <input type="hidden" name="_csrf" value="${_csrf.token}">

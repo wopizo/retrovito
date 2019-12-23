@@ -3,6 +3,21 @@
 <@c.page>
     <div class="w-50 mx-auto mt-5">
     <h2>Авторизация</h2>
+        <#if message??>
+            <#if message == 1>
+            <div style="color: green">
+                Пользователь успешно активирован!
+            </div>
+            <#elseif message == 2>
+                <div style="color: green">
+                    Ваш логин и новый пароль отправлен на вашу почту!
+                </div>
+            <#else>
+            <div style="color: red">
+                Пользователь не найден!
+            </div>
+            </#if>
+        </#if>
     <form action="/login" method="post">
         <div class="form-group">
             <label class="col-sm-2 col-form-label"> Логин :</label>
@@ -19,7 +34,7 @@
         <input type="hidden" name="_csrf" value="${_csrf.token}">
         <button type="submit" class="btn btn-dark">Войти</button>
     </form>
+        <a href="/restore">Забыли логин или пароль?</a><br/>
         <a href="/registration">Регистрация</a>
-    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
     </div>
 </@c.page>

@@ -37,8 +37,10 @@
                                 <div class="row">
                                     <div class="col-sm-8">
                                         <select name="buyer">
+                                            <option value="-10">Нет покупателя</option>
                                             <#if chats??>
                                                 <#list chats as chat>
+                                                    <#if !chat.userFrom.isBlocked() && !chat.userTo.isBlocked() && chat.userFrom.id != -1 && chat.userTo.id != -1>
                                                     <#if chat.userFrom.id == user.id>
                                                         <option value="${chat.userTo.id}">
                                                             ${chat.userTo.name}(${chat.date})
@@ -48,9 +50,8 @@
                                                             ${chat.userFrom.name}(${chat.date})
                                                         </option>
                                                     </#if>
+                                                    </#if>
                                                 </#list>
-                                            <#else>
-                                                <option value="">Нет контактов</option>
                                             </#if>
                                         </select>
                                     </div>
